@@ -1,0 +1,85 @@
+#!/usr/bin/env node
+
+const { spawn } = require('child_process');
+const path = require('path');
+const fs = require('fs');
+
+const command = process.argv[2];
+const targetFile = process.argv[3];
+
+if (command === 'serve' && targetFile) {
+  // vue serve 命令
+  const filePath = path.resolve(process.cwd(), targetFile);
+  
+  if (!fs.existsSync(filePath)) {
+    console.error(`文件不存在: ${filePath}`);
+    process.exit(1);
+  }
+
+  // 创建临时入口文件
+  const tempEntryFile = path.join(__dirname, '../src/temp-serve-entry.js');
+  // 计算相对于 src 目录的路径（因为临时入口文件在 src 目录下）
+  const srcDir = path.join(__dirname, '../src');
+  const relativePath = path.relative(srcDir, filePath).replace(/\\/g, '/');
+  const entryContent = `import Vue from "vue";
+import Component from "./${relativePath}";
+
+new Vue({
+  render: (h) => h(Component),
+}).$mount("#app");
+`;
+
+  console.log(`创建临时入口文件: ${tempEntryFile}`);
+  console.log(`导入组件: ./${relativePath}`);
+  fs.writeFileSync(tempEntryFile, entryContent, 'utf8');
+
+  // 确保临时文件已创建
+  if (!fs.existsSync(tempEntryFile)) {
+    console.error('错误: 无法创建临时入口文件');
+    process.exit(1);
+  }
+  
+  // 启动开发服务器
+  const env = Object.assign({}, process.env, {
+    VUE_SERVE_TARGET: 'true'
+  });
+  
+  console.log('启动开发服务器，环境变量 VUE_SERVE_TARGET=true');
+  // 使用 npx 确保能找到 vue-cli-service
+  const serveProcess = spawn('npx', ['vue-cli-service', 'serve', '--open'], {
+    stdio: 'inherit',
+    shell: true,
+    env: env,
+    cwd: path.join(__dirname, '..')
+  });
+
+  // 清理临时文件
+  const cleanup = () => {
+    if (fs.existsSync(tempEntryFile)) {
+      fs.unlinkSync(tempEntryFile);
+    }
+  };
+
+  process.on('SIGINT', () => {
+    cleanup();
+    serveProcess.kill();
+    process.exit();
+  });
+
+  serveProcess.on('exit', () => {
+    cleanup();
+  });
+} else {
+  // 其他命令直接传递给 vue-cli-service
+  const args = process.argv.slice(2);
+  const serveProcess = spawn('npx', ['vue-cli-service', ...args], {
+    stdio: 'inherit',
+    shell: true,
+    cwd: path.join(__dirname, '..')
+  });
+  
+  serveProcess.on('exit', (code) => {
+    process.exit(code || 0);
+  });
+}
+
