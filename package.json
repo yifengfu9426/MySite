@@ -8,7 +8,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:Pager": "vue serve ./src/components/Pager/test.vue"
+    "test:Pager": "node bin/vue serve ./src/components/Pager/test.vue"
   },
   "dependencies": {
     "core-js": "^3.8.3",
