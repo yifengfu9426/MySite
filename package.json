@@ -9,7 +9,10 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:Pager": "node bin/vue serve ./src/components/Pager/test.vue",
-    "test:Avatar": "node bin/vue serve ./src/components/Avatar/test.vue"
+    "test:Avatar": "node bin/vue serve ./src/components/Avatar/test.vue",
+    "test:Icon": "node bin/vue serve ./src/components/Icon/test.vue",
+    "test:Empty": "node bin/vue serve ./src/components/Empty/test.vue",
+    "test:ImageLoader": "node bin/vue serve ./src/components/ImageLoader/test.vue"
   },
   "dependencies": {
     "core-js": "^3.8.3",
