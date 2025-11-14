@@ -1,5 +1,5 @@
 <template>
-  <i class="iconfont" :class="fontClass" :style="iconStyle"></i>
+  <i class="iconfont" :class="fontClass"></i>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ const classMap = {
   code: "iconcode",
   about: "iconset_about_hov",
   weixin: "iconweixin",
-  mail: "iconmail",
+  mail: "iconemail",
   github: "icongithub",
   qq: "iconsign_qq",
   arrowUp: "iconiconfonticonfonti2copy",
@@ -28,10 +28,6 @@ export default {
       type: String,
       required: true,
     },
-    size: {
-      type: [String, Number],
-      default: "inherit",
-    },
   },
   computed: {
     fontClass() {
@@ -41,15 +37,6 @@ export default {
         return "";
       }
       return iconClass;
-    },
-    iconStyle() {
-      const size = this.size;
-      if (size === "inherit") {
-        return {};
-      }
-      return {
-        fontSize: typeof size === "number" ? `${size}px` : size,
-      };
     },
   },
 };
