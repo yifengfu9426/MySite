@@ -1,7 +1,7 @@
 <template>
   <div class="empty-container">
     <Icon :type="type" />
-    <span>{{ text }}</span>
+    <p>{{ text }}</p>
   </div>
 </template>
 
@@ -28,18 +28,18 @@ export default {
 
 <style lang="less" scoped>
 @import "~@/styles/var.less";
+@import "~@/styles/mixin.less";
 .empty-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  .self-center();
   color: @gray;
-  .iconfont {
+  .icon-container {
     font-size: 120px;
   }
-  span {
+  p {
     margin-top: 10px;
-    font-size: 22px;
+    font-size: 26px;
     font-weight: bold;
+    text-align: center;
   }
 }
 </style>

@@ -1,21 +1,35 @@
 <template>
-  <div>
-    <h1>App组件</h1>
-    <Avatar
-      url="https://cdn.pixabay.com/photo/2025/06/25/22/55/lavender-9680870_1280.jpg"
-      :size="150"
-    />
-    <Pager />
+  <div class="app-container">
+    <Layout>
+      <template #left>
+        <div class="aside">
+          <SiteAside />
+        </div>
+      </template>
+      <template #default> 中间主区域 </template>
+    </Layout>
   </div>
 </template>
 <script>
-import Avatar from "./components/Avatar";
-import Pager from "./components/Pager";
+import Layout from "@/components/Layout";
+import SiteAside from "@/components/SiteAside";
 export default {
   name: "App",
   components: {
-    Avatar,
-    Pager,
+    Layout,
+    SiteAside,
   },
 };
 </script>
+
+<style lang="less" scoped>
+@import "~@/styles/mixin.less";
+.app-container {
+  .self-fill(fixed);
+  background: lightblue;
+}
+.aside {
+  width: 250px;
+  height: 100%;
+}
+</style>

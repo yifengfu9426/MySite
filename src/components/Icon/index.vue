@@ -1,5 +1,5 @@
 <template>
-  <i class="iconfont" :class="fontClass"></i>
+  <i class="icon-container iconfont" :class="fontClass"></i>
 </template>
 
 <script>
@@ -22,6 +22,7 @@ const classMap = {
   empty: "iconempty",
   chat: "iconliuyan",
 };
+export const types = Object.keys(classMap);
 export default {
   props: {
     type: {
