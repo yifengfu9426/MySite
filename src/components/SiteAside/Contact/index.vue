@@ -74,11 +74,11 @@ export default {
         }
         span {
           display: inline-block;
-          transform: translateY(-2px); /* 向上挪 2 像素，可按需调整 */
+          transform: translateY(-1px); /* 向上挪 2 像素，可按需调整 */
         }
         .iconfont {
           margin-right: 10px;
-          font-size: 30px;
+          font-size: 24px;
         }
       }
       a:hover ~ .pop,

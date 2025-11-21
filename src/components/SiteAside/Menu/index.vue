@@ -1,16 +1,16 @@
 <template>
   <nav class="menu-container">
-    <a
+    <router-link
       v-for="obj in items"
-      :key="obj.link"
-      :href="obj.link"
-      :class="{ selected: isSelected(obj) }"
+      :key="obj.name"
+      :to="{ name: obj.name }"
+      :exact="obj.exact"
     >
       <div class="icon">
         <Icon :type="obj.icon" />
       </div>
       <span>{{ obj.title }}</span>
-    </a>
+    </router-link>
   </nav>
 </template>
 
@@ -24,34 +24,34 @@ export default {
     return {
       items: [
         {
-          link: "/",
+          name: "Home",
           title: "首页",
           icon: "home",
-          startWith: false,
+          exact: true,
         },
         {
-          link: "/blog",
+          name: "Blog",
           title: "文章",
           icon: "blog",
-          startWith: true,
+          exact: false,
         },
         {
-          link: "/about",
+          name: "About",
           title: "关于我",
           icon: "about",
-          startWith: true,
+          exact: true,
         },
         {
-          link: "/project",
+          name: "Project",
           title: "项目&效果",
           icon: "code",
-          startWith: true,
+          exact: true,
         },
         {
-          link: "/message",
+          name: "Message",
           title: "留言板",
           icon: "chat",
-          startWith: true,
+          exact: true,
         },
       ],
     };
@@ -89,7 +89,7 @@ export default {
     &:hover {
       color: white;
     }
-    &.selected {
+    &.router-link-active {
       background: #2d2d2d;
     }
   }

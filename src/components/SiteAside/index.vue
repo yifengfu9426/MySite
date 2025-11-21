@@ -42,7 +42,7 @@ body {
   background: @dark;
   padding: 20px 0;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: auto;
   // overflow-y: auto;
   .avatar-container {
     margin: 0 auto;

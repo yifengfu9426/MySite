@@ -6,7 +6,9 @@
           <SiteAside />
         </div>
       </template>
-      <template #default> 中间主区域 </template>
+      <template #default>
+        <RouterView />
+      </template>
     </Layout>
   </div>
 </template>
@@ -26,7 +28,7 @@ export default {
 @import "~@/styles/mixin.less";
 .app-container {
   .self-fill(fixed);
-  background: lightblue;
+  background: white;
 }
 .aside {
   width: 250px;
