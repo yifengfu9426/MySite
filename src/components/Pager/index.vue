@@ -102,7 +102,7 @@ export default {
   }
   .active {
     color: @words;
-    font-weight: bold;
+    font-weight: bold;  
     cursor: default;
   }
   .disabled {

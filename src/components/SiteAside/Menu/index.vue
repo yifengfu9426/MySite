@@ -77,12 +77,13 @@ export default {
   margin: 24px 0;
   a {
     color: inherit;
-    padding: 0 50px;
-    font-size: 20px;
+    padding: 0 30px;
+    font-size: 22px;
     text-decoration: none;
     display: flex;
     align-items: center;
-    height: 45px;
+    white-space: nowrap;
+    height: 55px;
     .icon {
       margin-right: 20px;
     }

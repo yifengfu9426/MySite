@@ -81,8 +81,7 @@ export default {
           font-size: 24px;
         }
       }
-      a:hover ~ .pop,
-      .pop:hover {
+      a:hover ~ .pop {
         opacity: 1;
         visibility: visible;
       }
@@ -98,7 +97,7 @@ export default {
         height: 150px;
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
+        transition: opacity 0.1s ease, visibility 0.1s ease;
         &::after {
           content: "";
           position: absolute;

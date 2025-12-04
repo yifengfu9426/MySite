@@ -79,7 +79,6 @@ export default {
     filter: blur(10px);
     opacity: 1;
     transition: opacity ease;
-    z-index: 1;
 
     &.hidden {
       opacity: 0;
@@ -88,7 +87,6 @@ export default {
 
   .main-image {
     opacity: 0;
-    z-index: 2;
     transition: opacity ease-in-out;
 
     &.loaded {

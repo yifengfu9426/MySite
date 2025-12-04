@@ -41,11 +41,16 @@ body {
   height: 100%;
   background: @dark;
   padding: 20px 0;
+  color: @gray;
   box-sizing: border-box;
   overflow: auto;
   // overflow-y: auto;
   .avatar-container {
     margin: 0 auto;
+    margin-bottom: 100px;
+  }
+  .menu-container {
+    margin-bottom: 100px;
   }
 }
 </style>
