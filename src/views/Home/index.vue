@@ -7,7 +7,7 @@
       }"
       @transitionend="handleTransitionEnd"
     >
-      <li v-for="item in banners" :key="item.id">
+      <li v-for=" item in banners" :key="item.id">
         <CarouselItem :banner="item" />
       </li>
     </ul>
@@ -96,9 +96,16 @@ export default {
 .home-container {
   width: 100%;
   height: 100%;
-  background: @dark;
   position: relative;
   overflow: hidden;
+
+  // // 测试
+  // width: 60%;
+  // height: 60%;
+  // overflow: visible;
+  // border: 2px solid lightgreen;
+  // margin: 0 auto;
+  // margin-top: 200px;
   ul {
     list-style: none;
   }
