@@ -12,7 +12,7 @@
       }"
       @transitionend="handleTransitionEnd"
     >
-      <li v-for="item in banners" :key="item.id">
+      <li v-for="item in data" :key="item.id">
         <CarouselItem :banner="item" />
       </li>
     </ul>
@@ -20,7 +20,7 @@
       <Icon type="arrowUp" />
     </div>
     <div
-      v-show="index < banners.length - 1"
+      v-show="index < data.length - 1"
       @click="switchTo(index + 1)"
       class="icon icon-down"
     >
@@ -29,7 +29,7 @@
     <ul class="indicator">
       <li
         :class="{ active: i === index }"
-        v-for="(item, i) in banners"
+        v-for="(item, i) in data"
         :key="item.id"
         @click="switchTo(i)"
       ></li>
@@ -41,29 +41,25 @@
 import { getBanners } from "@/api/banner";
 import CarouselItem from "@/views/Home/CarouselItem.vue";
 import Icon from "@/components/Icon/index.vue";
+import fetchData from "@/mixins/fetchData.js";
+
 export default {
+  mixins: [fetchData([])],
   components: {
     CarouselItem,
     Icon,
   },
   data() {
     return {
-      banners: [],
       index: 0, //当前显示第几张轮播图
       containerHeight: 0, //整个容器的高度
       switching: false,
-      isLoading: true,
     };
   },
   computed: {
     marginTop() {
       return -this.index * this.containerHeight + "px";
     },
-  },
-  async created() {
-    this.banners = await getBanners();
-    this.isLoading = false;
-    console.log(this.banners);
   },
   mounted() {
     this.containerHeight = this.$refs.home.clientHeight;
@@ -82,7 +78,7 @@ export default {
       if (e.deltaY < -5 && this.index > 0) {
         this.switching = true;
         this.index--;
-      } else if (e.deltaY > 5 && this.index < this.banners.length - 1) {
+      } else if (e.deltaY > 5 && this.index < this.data.length - 1) {
         this.switching = true;
         this.index++;
       }
@@ -92,6 +88,9 @@ export default {
     },
     handleResize() {
       this.containerHeight = this.$refs.home.clientHeight;
+    },
+    async fetchData() {
+      return await getBanners();
     },
   },
 };

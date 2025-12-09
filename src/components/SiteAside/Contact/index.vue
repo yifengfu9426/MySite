@@ -17,7 +17,7 @@
           <span>2206059364</span>
         </a>
         <div class="pop">
-          <img :src="require('@/images/qqqrcode.png')" alt="二维码" />
+          <img :src="require('@/assets/qqqrcode.png')" alt="二维码" />
         </div>
       </li>
       <li>
@@ -26,7 +26,7 @@
           <span>Mux212_</span>
         </a>
         <div class="pop">
-          <img :src="require('@/images/wxqrcode.png')" alt="二维码" />
+          <img :src="require('@/assets/wxqrcode.png')" alt="二维码" />
         </div>
       </li>
       <li>
